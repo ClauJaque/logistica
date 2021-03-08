@@ -1,0 +1,96 @@
+---
+title: "PLANIFICACIÓN DE PRODUCCIÓN EN MYPES"
+author: "Claudia Gomez, Jhenny Aviles"
+date: "6/3/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+# Encabezado con logotipo de la universidad.
+
+## Universidad Católica Boliviana "San Pablo"
+
+![La Paz - Bolivia](catolica.png.jpg){width="250" height="100"}
+
+## trabajo de fin de semana colocar el nombre del caso de estudio
+
+Las pymes representan el 79% de la base de la economía boliviana y generan alrededor del 40% de los empleos nacionales, según datos de la Confederación de la Micro y Pequeña Empresa, en su gran mayoria estas no tienen una buena planificacion de producción, ocasionando que las pymes tengan una desventaja competitiva, asignacion inadecuada de recursos, provocando perdidas economicas.
+
+
+# Fotografía pequeña de los integrantes del grupo y sus correos electrónicos.
+
+Claudia Gomez ![dianemezna@gmail.com](claud.png.jpg){width="100" height="120"}
+
+Jhenny Avilez ![jhenny.avilesh@gmail.com](jhenny.png){width="110" height="120"}
+
+# Situación problema que tratarás en el trabajo.
+
+Una mala planificación de la producción en las empresas, tiene como consecuencias: pérdida económica por una mala asignación de recursos,  desajustes en la producción, parada del proceso productivo, tiempo de inactividad, reducción del rendimiento, retrasos en las entregas, pérdida de ventas e insatisfacción del cliente. 
+
+# Identificación de al menos 3 artículos científicos y un libro en el que puedas encontrar soluciones propuestas a la situación problema.
+
+Para el problema estudiado, referente al planeamiento de produccion en las empresas , se hallaron los siguientes artículos:
+
+et = yt − yˆt|N , for t = N + 1,..., T .
+
+$$ e_t = y_t - y^{t|\delta}, \forall t \in [1...,T]$$
+
+Como libro referente para el planteamiento de propuestas como soluciones al problema, se menciona:
+
+
+# Disponer de un dataset (puede ser datos de excel) sobre la situación problema (Si no dispones de datos puedes buscarlos en sitios como Kaggle).
+
+Hemos bajado el dataset que esta en el sitio web https://www.kaggle.com/supergus/multistage-continuousflow-manufacturing-process?select=continuous_factory_process.csv
+
+library(readr)
+Datos1 =read_csv("continuous_factory_process.csv")
+View(continuous_factory_process)
+
+# Hacer un análisis exploratorio de los datos. 
+
+
+
+# Establecer si existe correlación entre las columnas del dataset.
+
+
+
+# Hacer un gráfico de matriz de covarianza.
+
+
+
+# Estudiar el histograma , el gráfico de densidad y los cuantiles de la variable que más impacta sobre el problema.
+
+
+
+# Citar las referencias bibliográficas.
+
+
+
+# Publicar en GitHub.
+
+
+
+# Publicar en la entrega del moodle el link a la pagina que creaste.
+
+
+## R Markdown
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+
+```{r cars}
+summary(cars)
+```
+
+## Including Plots
+
+You can also embed plots, for example:
+
+```{r pressure, echo=FALSE}
+plot(pressure)
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
