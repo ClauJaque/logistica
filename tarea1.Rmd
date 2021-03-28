@@ -1,5 +1,5 @@
 ---
-title: "PLANIFICACIÓN DE PRODUCCIÓN EN MYPES"
+title: "IMPORTANCIA DEL ESTUDIO DE TIEMPOS EN LAS EMPRESAS"
 author: "Claudia Gomez, Jhenny Aviles"
 date: "6/3/2021"
 output: html_document
@@ -16,7 +16,9 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ## trabajo de fin de semana colocar el nombre del caso de estudio
 
-Las pymes representan el 79% de la base de la economía boliviana y generan alrededor del 40% de los empleos nacionales, según datos de la Confederación de la Micro y Pequeña Empresa, en su gran mayoria estas no tienen una buena planificacion de producción, ocasionando que las pymes tengan una desventaja competitiva, asignacion inadecuada de recursos, provocando perdidas economicas.
+El estudio de tiempos y movimientos resulta de gran importancia en el campo de la Ingeniería Industrial.
+
+En efecto, gracias a este tipo de análisis es posible optimizar diferentes procesos y flujos de trabajo, lo cual representa a la vez mayor rentabilidad para las empresas.
 
 
 # Fotografía pequeña de los integrantes del grupo y sus correos electrónicos.
@@ -27,53 +29,99 @@ Jhenny Avilez ![jhenny.avilesh@gmail.com](jhenny.png){width="110" height="120"}
 
 # Situación problema que tratarás en el trabajo.
 
-Una mala planificación de la producción en las empresas, tiene como consecuencias: pérdida económica por una mala asignación de recursos,  desajustes en la producción, parada del proceso productivo, tiempo de inactividad, reducción del rendimiento, retrasos en las entregas, pérdida de ventas e insatisfacción del cliente. 
+El estudio de tiempo es utilizado en la actualidad en la mayoría de las empresas, puesto que permite determinar el tiempo que requiere cada proceso y de esta manera evitar la presencia de un porcentaje alto de improductividad que afecta la eficiencia del trabajo que se realiza, con la finalidad de aprovechar todos los recursos disponibles.
 
 # Identificación de al menos 3 artículos científicos y un libro en el que puedas encontrar soluciones propuestas a la situación problema.
 
-Para el problema estudiado, referente al planeamiento de produccion en las empresas , se hallaron los siguientes artículos:
+Como libros de referencia para el problema estudiado, se menciona a los libros: 
 
-et = yt − yˆt|N , for t = N + 1,..., T .
+Ingenieria de Metodos movimientos y tiempos de Luis Carlos Palacios Acero, donde se menciona que mejorar el rendimiento de los procesos ayuda a  incrementar la productividad y eficiencia, esto se da corrigiendo las fuentes de  ineficiencias y desperdicios, cuyo objetivo final es contribuir al progreso empresarial.
 
-$$ e_t = y_t - y^{t|\delta}, \forall t \in [1...,T]$$
+Estudios de tiempos y movimientos para la manufactura agil de Fred E. Meyers, se hace énfasis en el diseño y análisis de los puestos de trabajo, y las técnicas para la estandarización de tiempos. La mano de obra en las empresas representan costos significativos en caso de no realizar un buen analisis del estudio de movimientos, por ello se debe controlar el rendimiento de operación.
 
-Como libro referente para el planteamiento de propuestas como soluciones al problema, se menciona:
+Articulo ¿Qué ha pasado con la aplicación del estudio de tiempos y movimientos en las últimas dos décadas? de Alex Mauricio Ovalle Castiblanco, Diana María Cárdenas Aguirre, en los ultimos años la globalización y competencia ha obligado a las empresas a evolucionar en técnicas y metodos de trabajo con el objeto de optimizar los tiempos de trabajo, y no tener despilfarros de tiempo, materiales, espacio y demás recursos organizacionales. 
 
 
 # Disponer de un dataset (puede ser datos de excel) sobre la situación problema (Si no dispones de datos puedes buscarlos en sitios como Kaggle).
 
-Hemos bajado el dataset que esta en el sitio web https://www.kaggle.com/supergus/multistage-continuousflow-manufacturing-process?select=continuous_factory_process.csv
+Se tomo como datos el siguiente archivo:
 
-library(readr)
-Datos1 =read_csv("continuous_factory_process.csv")
-View(continuous_factory_process)
+```{r}
+library(readxl)
+tiempo <- read_excel("tiempo.xlsx")
 
+```
 # Hacer un análisis exploratorio de los datos. 
 
+En la tabla de datos a continuacion se puede observar el estudio de tiempos en unidades productivas de marroquineria, que seran denominados como UP1, UP2, UP3, UP4, UP5, UP6 Y UP7, donde se tienen los datos de tiempos de utilizacion de mano de obra, tiempo de utilizacion de maquinaria, tiempo muerto y en la ultima columna se puede apreciar las cantidades producidas en unidades, mismos que dependen del tiempo empleado en la produccion.
+
+```{r}
+summary(tiempo)
+```
 
 
 # Establecer si existe correlación entre las columnas del dataset.
 
+```{r}
+library(ggplot2)
+library(corrplot)
+mtcars <- read_excel("tiempo.xlsx")
+head(mtcars)
+mtcars$`Unidad productiva`=NULL
+mtcars.cor <- cor(mtcars,method = "pearson")
 
+round(mtcars.cor,digits = 2)
+corrplot(mtcars.cor)
 
-# Hacer un gráfico de matriz de covarianza.
+library(psych)
+pairs(tiempo[c(2,3,4,5,6)])
 
-
+```
 
 # Estudiar el histograma , el gráfico de densidad y los cuantiles de la variable que más impacta sobre el problema.
 
+# HISTOGRAMA
 
+```{r}
+par(mfrow=c(2,2))
+hist(tiempo$`Tiempo MO`, col = "yellow", main = "TIEMPO MO", xlab = "TIEMPO MO",ylab = "FRECUENCIA")
+hist(tiempo$`Tiempo maquinaria`, col = "green", main = "TIEMPO MAQUINARIA", xlab = "TIEMPO MAQUINARIA", ylab = "FRECUENCIA")
+hist(tiempo$`Tiempo muerto`, col = "orange", main = "TIEMPO MUERTO", xlab = "TIEMPO MUERTO", ylab = "FRECUENCIA")
+hist(tiempo$`Cantidad producida`, col = "blue", main = "CANTIDAD PRODUCIDA", xlab = "CANTIDAD PRODUCIDAD", ylab = "FRECUENCIA")
+```
 
-# Citar las referencias bibliográficas.
+# DENSIDAD
 
+```{r}
+density(tiempo$`Tiempo MO`)
+density(tiempo$`Tiempo maquinaria`)
+density(tiempo$`Tiempo muerto`)
+density(tiempo$`Cantidad producida`)
+par(mfrow=c(2,2))
+plot(density(tiempo$`Tiempo MO`), xlab = "TIEMPO MO", ylab = "DENSIDAD", main = "TIEMPO MO", col="yellow")
+plot(density(tiempo$`Tiempo maquinaria`), xlab = "TIEMPO MAQUINARIA", ylab = "DENSIDAD", main = "TIEMPO MAQUINARIA", col="green")
+plot(density(tiempo$`Tiempo muerto`), xlab = "TIEMPO MUERTO", ylab = "DENSIDAD", main = "TIEMPO MUERTO", col="orange")
+plot(density(tiempo$`Cantidad producida`), xlab = "CANTIDAD PRODUCIDA", ylab = "DENSIDAD", main = "CANTIDAD PRODUCIDA", col="blue")
 
+```
 
-# Publicar en GitHub.
+# CUANTILES
 
+```{r}
+par(mfrow=c(2,2))
+plot(quantile(tiempo$`Tiempo MO`), ylab = "TIEMPO MO", col="yellow")
+plot(quantile(tiempo$`Tiempo maquinaria`), ylab = "TIEMPO MAQUINARIA", col="green")
+plot(quantile(tiempo$`Tiempo muerto`), ylab = "TIEMPO MUERTO", col="orange")
+plot(quantile(tiempo$`Cantidad producida`), ylab = "CANTIDAD PRODUCIDA", col="blue")
+```
 
+# Bibliografia
 
-# Publicar en la entrega del moodle el link a la pagina que creaste.
+Acero, L. C. P. (2017). ingenieria de metodos movimientos y tiempos (Vol. 1) [Libro electrónico]. ecoe ediciones. https://www.ecoeediciones.com/wp-content/uploads/2015/08/Ingenier%C3%ADa-de-m%C3%A9todos.pdf
 
+Freivalds. (2021). Ingenieria Industrial De Niebel Metodos, Estandares y Diseño del Trabajo (13.a ed., Vol. 1) [Libro electrónico]. MCGRAW HILL EDDUCATION. https://www.academia.edu/36652836/Ingenier%C3%ADa_Industrial_M%C3%A9todos_Est%C3%A1ndares_y_Dise%C3%B1o_del_Trabajo_Benjamin_W_Niebel_12_Edici%C3%B3n
+
+Ovalle Castiblanco, A. M., & Cárdenas Aguirre, D. M. (2016, diciembre). ¿Qué ha pasado con la aplicación del estudio de tiempos y movimientos en las últimas dos décadas? DIALNET. https://dialnet.unirioja.es/servlet/articulo?codigo=6096114
 
 ## R Markdown
 
